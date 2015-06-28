@@ -3,15 +3,32 @@
 
   angular
     .module('esfront')
-    .controller('MainController', MainController);
+    .controller('MainController', MainController)
+    .controller('LeftCtrl', LeftCtrl);
 
   /* global ejs:false */
 
   /** @ngInject */
-  function MainController($timeout, $scope, searchClient, $mdSidenav) {
+  function MainController($timeout, $scope, searchClient, $mdSidenav, $mdUtil, $log) {
     var vm = this;
 
     vm.classAnimation = '';
+
+    $scope.toggleLeft = buildToggler('left');
+    /**
+     * Build handler to open/close a SideNav; when animation finishes
+     * report completion in console
+     */
+    function buildToggler(navID) {
+      var debounceFn =  $mdUtil.debounce(function(){
+            $mdSidenav(navID)
+              .toggle()
+              .then(function () {
+                $log.debug("toggle " + navID + " is done");
+              });
+          },300);
+      return debounceFn;
+    }
 
     $scope.resultsShown = false;
     $scope.search_creator_class = 'search_creator';
@@ -61,5 +78,14 @@
     };
 
 
+  }
+
+  function LeftCtrl ($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+          $log.debug("close LEFT is done");
+        });
+    };
   }
 })();

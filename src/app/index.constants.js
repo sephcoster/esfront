@@ -17,11 +17,11 @@
         role: 'title'
       },
       { name: 'Grade',
-        field: 'Grade'
+        field: 'Grade',
         role: 'subtitle'
       },
       { name: 'Location',
-        field: 'Location'
+        field: 'Location',
         role: 'title'
       },
       { name: 'Job Summary',

@@ -2,9 +2,22 @@
 <html ng-app="esfront">
   <head>
     <meta charset="utf-8">
-    <title>esfront</title>
+    <title>ESFront - A Front-end for ElasticSearch</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!-- TODO: Move GA to Injector -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-64584867-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -37,14 +50,8 @@
             You know, for search.
           </p>
         </section>
-        <section class="search_input" >
-          <md-input-container>
-            <label>Search for a Job</label>
-            <input type="text" ng-model="queryText" ng-change="sendQuery()">
-          </md-input-container>          
-        </section>
-        <section class="search_results" ng-show="resultsShown" ng-if="hits" layout="row">
-          <div flex="25" class="left_navigation">
+<!--         <section class="search_results" ng-show="resultsShown" ng-if="hits" layout="row" layout-sm="column">
+          <div flex="25" flex-sm="0" class="left_navigation">
             <div ><span>{{number_results}} results for ' {{lastQueryText}} '</span></div>
             <div class="aggregation" ng-if="aggregations">
               <div ng-repeat="(category, obj) in aggregations">
@@ -53,11 +60,41 @@
               </div>
             </div>
           </div>  
-          <div flex="75" class="results_area">       
+          <div flex="75" flex-sm="0" class="results_area">       
             <result ng-repeat="hit in hits" result="hit" />
           </div>
-        </section>
-
+        </section> -->
+        <section layout="row" flex>
+            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" ng-show="resultsShown">
+              <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools md-primary">Search Summary</h1>
+              </md-toolbar>
+              <md-content layout-padding ng-controller="LeftCtrl">
+                <div ><span>{{number_results}} results for ' {{lastQueryText}} '</span></div>
+                <div class="aggregation" ng-if="aggregations">
+                  <div ng-repeat="(category, obj) in aggregations">
+                    <h5 class="aggregation-header">{{category}}</h5> 
+                    <li class="aggregation-value" ng-repeat="value in obj.buckets"><input type="checkbox" value="{{value.key}}-selected" /> {{ value.key }} ({{ value.doc_count }})</li>    
+                  </div>
+                </div>
+              </md-content>
+            </md-sidenav>
+            <md-content flex layout-padding>
+              <div layout="column" layout-fill layout-align="top center">
+                
+                <md-input-container class="search_input" >
+                  <label><i class="material-icons">search</i> Search for a Job</label>
+                  <input type="text" ng-model="queryText" ng-change="sendQuery()">
+                </md-input-container>
+                <md-button ng-click="toggleLeft()"
+                  class="md-primary" hide-gt-md ng-show="resultsShown">
+                  Show Summary
+                </md-button>                  
+                <result ng-repeat="hit in hits" result="hit" />
+              </div>
+              <div flex></div>
+            </md-content>
+          </section>
       </md-content>
     
     </div>
