@@ -40,7 +40,7 @@
                   .from( $scope.queryIndex )
                   .size( $scope.size )
                   .query(ejs.QueryStringQuery( $scope.queryText ))
-                  .agg(ejs.TermsAggregation('Organization').field('OrganizationName').size(5))
+                  .agg(ejs.TermsAggregation('Organization').field('OrganizationName'))
                   .agg(ejs.TermsAggregation('Locations').field('Locations').size(5))
                   .agg(ejs.TermsAggregation('Grade').field('Grade').size(5))
                   .highlight( highlightPost )

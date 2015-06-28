@@ -11,15 +11,33 @@
     var options = {};
 
     options.default_return_size = 25;
+    options.fields = [
+      { name: 'Organization',
+        field: 'OrganizationName',
+        role: 'title'
+      },
+      { name: 'Grade',
+        field: 'Grade'
+        role: 'subtitle'
+      },
+      { name: 'Location',
+        field: 'Location'
+        role: 'title'
+      },
+      { name: 'Job Summary',
+        field: 'JobSummary',
+        role: 'description'
+      } 
+    ];
     options.aggregations =[
-      { name: "Organization",
-        field: "OrganizationName"
+      { name: 'Organization',
+        field: 'OrganizationName'
       },
-      { name: "Grade",
-        field: "Grade"
+      { name: 'Grade',
+        field: 'Grade'
       },
-      { name: "Location",
-        field: "Location"
+      { name: 'Location',
+        field: 'Location'
       },        
     ];
     options.aggregation_size = 5;
