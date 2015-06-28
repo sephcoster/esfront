@@ -24,33 +24,29 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div layout="vertical" layout-fill ng-controller="MainController as main">
+    <div layout="column" layout-fill ng-controller="MainController as main">
     
       <md-content>
         <header>
-          <acme-navbar creationDate="main.creationDate" />
+          <acme-navbar />
         </header>
     
         <section class="jumbotron">
           <h1>ElasticSearch Front</h1>
           <p class="lead">
-            <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
             You know, for search.
           </p>
         </section>
-    
-        <div class="techs" layout-align="center">
-          <md-card ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
-            <div class="thumbnail">
-              <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
-              <div class="caption">
-                <h3>{{ awesomeThing.title }}</h3>
-                <p>{{ awesomeThing.description }}</p>
-                <p><a ng-href="{{ awesomeThing.url }}">{{ awesomeThing.url }}</a></p>
-              </div>
-            </div>
-          </md-card>
-        </div>
+        <section class="search_input">
+          <md-input-container>
+            <label>Search for a Job</label>
+            <input type="text" ng-model="queryText" ng-change="sendQuery()">
+          </md-input-container>          
+        </section>
+        <section class="search_results" >
+          <result ng-repeat="hit in hits" result="hit" />
+        </section>
+
       </md-content>
     
     </div>

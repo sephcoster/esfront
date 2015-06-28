@@ -1,0 +1,17 @@
+<div layout="column">
+    <div flex layout="row">
+        <div layout="column">
+            <div class="search_result-issue">{{ result._source.JobTitle }}</div>
+            <div class="search_result-sub-issue">{{ result._source.Locations }}</div>
+            <div ng-if="result.highlight.JobSummary" ng-bind-html="result.highlight.JobSummary[0]" class="search_result-narrative"></div>
+            <div ng-if="!result.highlight.JobSummary" class="search_result-narrative">
+                No highlight field detected.
+                {{ result._source.JobSummary }}
+            </div>            
+        </div>    
+        <div >
+            Tag 1<br/>
+            Tag 2
+        </div>  
+    </div> 
+</div>
