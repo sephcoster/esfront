@@ -1,4 +1,4 @@
-
+<!-- 
         <div layout="column">
             <div class="search_result-issue"><h3>{{ result._source.JobTitle }}</h3></div>
             <div class="search_result-sub-issue"><h4>{{ result._source.Locations }}</h4></div>
@@ -7,4 +7,19 @@
                 No highlight field detected.
                 {{ result._source.JobSummary }}
             </div>            
-        </div>
+        </div> -->
+<md-card class="search-result-card">
+  <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+  <md-card-content>
+    <h2 class="md-title job-title">{{ result._source.JobTitle }}</h2>
+    <h3 class="job-title">{{ result._source.OrganizationName }}</h3>
+    <h3 class="job-sub-title">{{ result._source.Locations }}</h3>
+    <p ng-if="result.highlight.JobSummary" ng-bind-html="result.highlight.JobSummary[0]"></p>
+    <p ng-if="!result.highlight.JobSummary">
+        No highlight field detected.
+        {{ result._source.JobSummary }}
+    </p>
+        
+    </p>
+  </md-card-content>
+</md-card>

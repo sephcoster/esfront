@@ -18,7 +18,7 @@
     
     var highlightPost = ejs.Highlight(['JobSummary'])
       .numberOfFragments(1, 'JobSummary')
-      .fragmentSize(350, 'JobSummary');
+      .fragmentSize(5000, 'JobSummary');
 
     $scope.queryIndex = 0;
     $scope.sort = '_score';
@@ -40,7 +40,7 @@
                   .from( $scope.queryIndex )
                   .size( $scope.size )
                   .query(ejs.QueryStringQuery( $scope.queryText ))
-                  .agg(ejs.TermsAggregation('Organization').field('Organization').size(5))
+                  .agg(ejs.TermsAggregation('Organization').field('OrganizationName').size(5))
                   .agg(ejs.TermsAggregation('Locations').field('Locations').size(5))
                   .agg(ejs.TermsAggregation('Grade').field('Grade').size(5))
                   .highlight( highlightPost )

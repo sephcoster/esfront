@@ -32,19 +32,20 @@
         </header>
     
         <section class="jumbotron">
-          <h1>ElasticSearch Front</h1>
+          <h3>ElasticSearch Front</h3>
           <p class="lead">
             You know, for search.
           </p>
         </section>
-        <section class="search_input">
+        <section class="search_input" >
           <md-input-container>
             <label>Search for a Job</label>
             <input type="text" ng-model="queryText" ng-change="sendQuery()">
           </md-input-container>          
         </section>
-        <section class="search_results" ng-show="resultsShown" layout="row">
-          <div flex="33">
+        <section class="search_results" ng-show="resultsShown" ng-if="hits" layout="row">
+          <div flex="25" class="left_navigation">
+            <div ><span>{{number_results}} results for ' {{lastQueryText}} '</span></div>
             <div class="aggregation" ng-if="aggregations">
               <div ng-repeat="(category, obj) in aggregations">
                 <h5 class="aggregation-header">{{category}}</h5> 
@@ -52,7 +53,7 @@
               </div>
             </div>
           </div>  
-          <div flex="66">       
+          <div flex="75" class="results_area">       
             <result ng-repeat="hit in hits" result="hit" />
           </div>
         </section>
