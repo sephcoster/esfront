@@ -43,8 +43,18 @@
             <input type="text" ng-model="queryText" ng-change="sendQuery()">
           </md-input-container>          
         </section>
-        <section class="search_results" >
-          <result ng-repeat="hit in hits" result="hit" />
+        <section class="search_results" ng-show="resultsShown" layout="row">
+          <div flex="33">
+            <div class="aggregation" ng-if="aggregations">
+              <div ng-repeat="(category, obj) in aggregations">
+                <h5 class="aggregation-header">{{category}}</h5> 
+                <li class="aggregation-value" ng-repeat="value in obj.buckets"><input type="checkbox" value="{{value.key}}-selected" /> {{ value.key }} ({{ value.doc_count }})</li>    
+              </div>
+            </div>
+          </div>  
+          <div flex="66">       
+            <result ng-repeat="hit in hits" result="hit" />
+          </div>
         </section>
 
       </md-content>

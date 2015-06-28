@@ -8,7 +8,7 @@
   /* global ejs:false */
 
   /** @ngInject */
-  function MainController($timeout, $scope, searchClient) {
+  function MainController($timeout, $scope, searchClient, $mdSidenav) {
     var vm = this;
 
     vm.classAnimation = '';
