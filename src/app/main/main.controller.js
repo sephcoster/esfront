@@ -57,7 +57,7 @@
                   .from( $scope.queryIndex )
                   .size( $scope.size )
                   .query(ejs.QueryStringQuery( $scope.queryText ))
-                  .agg(ejs.TermsAggregation('Organization').field('OrganizationName').size(5))
+                  .agg(ejs.TermsAggregation('Organization').field('OrganizationName.raw').size(5))
                   .agg(ejs.TermsAggregation('Locations').field('Locations').size(5))
                   .agg(ejs.TermsAggregation('Grade').field('Grade').size(5))
                   .highlight( highlightPost )
@@ -65,7 +65,6 @@
         }).then(function (body) {
           $scope.time_returned = new Date();
           $scope.hits = body.hits.hits;
-          console.log('Scope hits: ', $scope.hits );
           $scope.lastQueryText = $scope.queryText;
           $scope.aggregations = body.aggregations;
           $scope.number_results = body.hits.total;
