@@ -30,4 +30,5 @@ To work with this application, you will need the following installed globally:
 * The great work from the folks at FullScale on Elastic.js
 * The platform of epicness that is ElasticSearch
 * My colleagues @Excellaco, especially @MehtaDev17 who keep me learning and motivated every day
+* USAJobs API
 
