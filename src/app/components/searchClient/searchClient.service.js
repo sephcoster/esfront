@@ -12,7 +12,7 @@
 
   /** @ngInject */
   function searchClient (esFactory){
-    var esLocation = 'http://fd5c719ffba9c4b8d3d52762bec6910a.us-east-1.aws.found.io:9200/';
+    var esLocation = 'http://52.2.78.193:9200/';
     return esFactory({
       host: esLocation,
       apiVersion: '1.5',

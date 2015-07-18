@@ -10,6 +10,7 @@
   function searchConfig(){
     var options = {};
 
+    options.esLocation = 'http://52.2.78.193:9200/';
     options.default_return_size = 25;
     options.fields = [
       { name: 'Organization',

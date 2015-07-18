@@ -6,10 +6,11 @@
 'use strict';
 
 var MainPage = function() {
-  this.jumbEl = element(by.css('.jumbotron'));
-  this.h1El = this.jumbEl.element(by.css('h1'));
-  this.imgEl = this.jumbEl.element(by.css('img'));
-  this.thumbnailEls = element(by.css('body')).all(by.repeater('awesomeThing in main.awesomeThings'));
+  // this.header = this.element(by.css('acme-navbar'));
+  this.searchBox = element(by.css('.search_input input'));
+  // this.aggregations = this.element(by.css('.aggregation'));
+  // this.aggValues = this.aggregations.element(by.css('.aggregation-header'));
+  // this.aggRepeater = this.all(by.repeater('(category, obj) in aggregations'));
 };
 
 module.exports = new MainPage();
